@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Vue Dasar</title>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="brand">
+                <a href="#" class="brand-logo">Vue Basic</a>
+            </div>
+            <ul class="nav-menu">
+                <li v-for="(page, index) in pages" :key="index">
+                    <a :href="page.link.url"
+                       :title="`Go to ${page.link.text}`"
+                     @click.prevent="activePage = index" :class="{ active: activePage === link }">{{ page.link.text }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>{{ pages[activePage].pageTitle }}</h1>
+        <p>{{ pages[activePage].pageContent }}</p>
+    </div>
+
+    <!-- Update the Vue app data and methods -->
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    activePage: 0,
+                    pages: [
+                    {
+                        link: {text: 'Home', url: 'index.html'},
+                        pageTitle: 'Home',
+                        pageContent: 'Welcome to the home page!'
+                    },
+                    {
+                        link: {text: 'About', url: 'about.html'},
+                        pageTitle: 'About',
+                        pageContent: 'This is the about page.'
+                    },
+                    {
+                        link: {text: 'Contact', url: 'contact.html'},
+                        pageTitle: 'Contact',
+                        pageContent: 'Contact us at.'                     
+                    }
+                ]};
+            }
+        }).mount('body');
+    </script>
+
+</body>
+</html>
