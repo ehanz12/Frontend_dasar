@@ -17,8 +17,10 @@
             </div>
             <ul class="nav-menu">
                 <li v-for="(page, index) in pages" :key="index">
-                    <a :href="page.link.url"
-                       :title="`Go to ${page.link.text}`"
+                    <a  :class="{active: ActivePage == index}"
+                        aria-current="page"
+                        :href="page.link.url"
+                        :title="`Go to ${page.link.text}`"
                      @click.prevent="activePage = index" :class="{ active: activePage === link }">{{ page.link.text }}</a>
                 </li>
             </ul>
